@@ -6,10 +6,11 @@ import {
     Table,
     Model,
     ForeignKey,
-    BelongsTo
+    BelongsTo,
+    HasOne
 } from "sequelize-typescript";
 import { Product } from "./products.model";
-
+import { Orders } from "./orders.model";
 @Table({
     tableName: "productCarts",
     timestamps: true
@@ -41,4 +42,7 @@ export class ProductCart extends Model {
 
     @BelongsTo(() => Product)
     products!: Product;
+
+    @HasOne(() => Orders)
+    productCarts!: Orders[];
 }
