@@ -8,7 +8,7 @@ import {
     Model,
     HasMany
 } from "sequelize-typescript";
-import { ProductCard } from "./productCart.model";
+import { ProductCart } from "./productCarts.model";
 
 @Table({
     tableName: "products",
@@ -23,18 +23,18 @@ export class Product extends Model {
     id!: number;
 
     @Column({
-        type: DataType.STRING,
+        type: DataType.STRING(200),
     })
     name!: string;
 
     @Column({
-        type: DataType.STRING,
+        type: DataType.DECIMAL(10,2),
     })
     price!: string;
 
     @AllowNull
     @Column({
-        type: DataType.STRING,
+        type: DataType.TEXT,
     })
     description!: string;
 
@@ -43,6 +43,6 @@ export class Product extends Model {
     })
     stock!: number;
 
-    @HasMany(() => ProductCard)
-    sales!: ProductCard[];
+    @HasMany(() => ProductCart)
+    productCarts!: ProductCart[];
 }
