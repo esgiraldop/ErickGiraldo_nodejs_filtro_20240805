@@ -11,7 +11,7 @@ import {
 import { ProductCart } from "./productCarts.model";
 
 @Table({
-    tableName: "productCarts",
+    tableName: "orders",
     timestamps: true
 })
 export class Orders extends Model {
@@ -25,14 +25,16 @@ export class Orders extends Model {
     // @ForeignKey(() => Users)
     @Column({
         type: DataType.INTEGER,
+        allowNull: true
     })
-    userId!: number;
+    userId?: number;
 
     @ForeignKey(() => ProductCart)
     @Column({
         type: DataType.INTEGER,
+        allowNull: true
     })
-    productCartId!: number;
+    productCartId?: number;
 
     @Column({
         type: DataType.DECIMAL(10,2),
@@ -40,5 +42,5 @@ export class Orders extends Model {
     total!: number;
 
     @BelongsTo(() => ProductCart)
-    productCarts!: ProductCart;
+    productCarts?: ProductCart;
 }

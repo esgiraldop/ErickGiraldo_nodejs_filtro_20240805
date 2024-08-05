@@ -5,6 +5,6 @@ import OrdersRoutes from "./orders.routes";
 const Routes = Router()
 
 Routes.use('/products', ProductRoutes);
-Routes.use('/products', OrdersRoutes);
+Routes.use('/orders', OrdersRoutes);
 
 export default Routes

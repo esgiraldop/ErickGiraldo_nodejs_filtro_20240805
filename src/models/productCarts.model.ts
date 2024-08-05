@@ -19,30 +19,34 @@ export class ProductCart extends Model {
     @PrimaryKey
     @AutoIncrement
     @Column({
-        type: DataType.INTEGER
+        type: DataType.INTEGER,
+        allowNull: true
     })
     id!: number;
 
     // @ForeignKey(() => Cart)
     @Column({
         type: DataType.INTEGER,
+        allowNull: true
     })
-    cartId!: number;
+    cartId?: number;
 
     @ForeignKey(() => Product)
     @Column({
         type: DataType.INTEGER,
+        allowNull: true
     })
-    productId!: number;
+    productId?: number;
 
     @Column({
         type: DataType.INTEGER,
+        allowNull: true
     })
-    quantity!: number;
+    quantity?: number;
 
     @BelongsTo(() => Product)
     products!: Product;
 
     @HasOne(() => Orders)
-    productCarts!: Orders[];
+    orders?: Orders[];
 }

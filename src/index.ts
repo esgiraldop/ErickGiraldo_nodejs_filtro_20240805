@@ -17,8 +17,8 @@ const startServer = async () =>{
         await sequelizeConfig.authenticate();
         console.log("Connection to database established");
         // await sequelizeConfig.sync({force:true}); // Recreates tables every time the server is started
-        // await sequelizeConfig.sync({alter:true}); // Alter tables instead of dropping them
-        await sequelizeConfig.sync();
+        await sequelizeConfig.sync({alter:true}); // Alter tables instead of dropping them
+        // await sequelizeConfig.sync();
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
         })

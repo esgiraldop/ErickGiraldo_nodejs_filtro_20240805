@@ -36,7 +36,7 @@ export class OrderRepository{
             include: [
                 {
                     model: ProductCart,
-                    as: 'sales',
+                    as: 'productCarts',
                     required: true,
                     attributes: ["id"],
                     include: [
