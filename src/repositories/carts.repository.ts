@@ -5,6 +5,10 @@ import { Carts } from "../models/carts.model";
 @injectable()
 export class CartRepository{
 
+    async getById(id:number):Promise<Carts|null>{
+        return await Carts.findByPk(id)
+    }
+
     async create(userId:number):Promise<Carts|null>{
         return await Carts.create({userId})
     }

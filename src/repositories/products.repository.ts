@@ -9,7 +9,7 @@ export class ProductRepository{
         return await Product.findAll()
     }
 
-    async getById(id:string):Promise<Product|null>{
+    async getById(id:number):Promise<Product|null>{
         return await Product.findByPk(id)
     }
 
@@ -19,6 +19,12 @@ export class ProductRepository{
 
     async update(id:string, {name, price, description, stock}:IProduct):Promise<void>{
         await Product.update({name, price, description, stock},
+            {where: {id}}
+        )
+    }
+
+    async updateStock(id:number, newStock:number):Promise<void>{
+        await Product.update({stock:newStock},
             {where: {id}}
         )
     }

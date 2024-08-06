@@ -12,7 +12,7 @@ export class ProductServices{
         return await this.productRepository.getAll()
     }
 
-    async getProductById(id:string):Promise<Product|null>{
+    async getProductById(id:number):Promise<Product|null>{
         return await this.productRepository.getById(id)
     }
 
