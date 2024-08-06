@@ -9,6 +9,7 @@ import {
     BelongsTo
 } from "sequelize-typescript";
 import { ProductCart } from "./productCarts.model";
+import { Users } from "./users.model";
 
 @Table({
     tableName: "orders",
@@ -22,7 +23,7 @@ export class Orders extends Model {
     })
     id!: number;
 
-    // @ForeignKey(() => Users)
+    @ForeignKey(() => Users)
     @Column({
         type: DataType.INTEGER,
         allowNull: true

@@ -6,8 +6,10 @@ import {
     Table,
     Model,
     ForeignKey,
-    BelongsTo
+    BelongsTo,
+    HasMany
 } from "sequelize-typescript";
+import { Orders } from "./orders.model";
 
 @Table({
     tableName: "users",
@@ -37,6 +39,6 @@ export class Users extends Model {
     })
     roleId!: number;
 
-    // @BelongsTo(() => ProductCart)
-    // productCarts!: ProductCart;
+    @HasMany(() => Orders)
+    orders!: Orders;
 }
