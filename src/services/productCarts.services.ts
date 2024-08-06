@@ -62,6 +62,18 @@ export class ProductCartServices{
     }
 
     async deleteProductCart(id:string):Promise<void>{
+
+        // Getting the data of the product cart
+        const productCartInfo = await this.productCartRepository.getById(id);
+        const productId = productCartInfo?.dataValues.productId
+        const quantity = productCartInfo?.dataValues.quantity
+        const productData  = await this.productRepository.getById(productId);
+        const stock = productData?.dataValues.stock;
+
+        // Updating the stock of the product
+        await this.productRepository.updateStock(productId, stock + quantity)
+
+        // Deleting the product in the corresponding cart
         return await this.productCartRepository.destroy(id)
     }
 }
