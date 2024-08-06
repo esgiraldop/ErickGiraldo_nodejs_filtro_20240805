@@ -22,11 +22,13 @@ export class UserServices{
 
     async createUser(orderData:IUser):Promise<Users|null>{
         const userData = await this.userRepository.create(orderData)
-        if(!userData){
+        const usrId = userData?.dataValues.id
+        if(!userData || !usrId){
             return null
+        }else{
+            const cartData = await this.cartRepository.create(usrId);
+            return userData
         }
-        const cartData = await this.cartRepository.create({userData.data.id})
-        return userData
     }
 
     async updateUser(id:string, orderData:IUser):Promise<void>{

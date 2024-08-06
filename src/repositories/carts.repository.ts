@@ -5,7 +5,7 @@ import { Carts } from "../models/carts.model";
 @injectable()
 export class CartRepository{
 
-    async create({userId}:ICart):Promise<Carts|null>{
+    async create(userId:number):Promise<Carts|null>{
         return await Carts.create({userId})
     }
 
