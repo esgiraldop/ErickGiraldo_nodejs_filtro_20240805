@@ -10,6 +10,7 @@ import {
     HasMany
 } from "sequelize-typescript";
 import { Orders } from "./orders.model";
+import { Roles } from "./roles.model";
 
 @Table({
     tableName: "users",
@@ -33,7 +34,7 @@ export class Users extends Model {
     })
     password!: string;
 
-    // @ForeignKey(() => Roles)
+    @ForeignKey(() => Roles)
     @Column({
         type: DataType.INTEGER,
     })
@@ -41,4 +42,7 @@ export class Users extends Model {
 
     @HasMany(() => Orders)
     orders!: Orders;
+
+    @BelongsTo(() => Roles)
+    roles!: Roles;
 }

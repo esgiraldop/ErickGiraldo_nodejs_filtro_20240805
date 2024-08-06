@@ -33,8 +33,10 @@ export class UserController{
 
     static async createUser(req: Request, res:Response){
         try{
+            const requestData = req.body;
+            const roleId = 2; // User is assigned a client role id by default
             const userService = container.resolve(UserServices);
-            const response = await userService.createUser(req.body);
+            const response = await userService.createUser({...requestData, roleId});
             if(!response){
                 res.status(200).json({
                     message: "No user created",
