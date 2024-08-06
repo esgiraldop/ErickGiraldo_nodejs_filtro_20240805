@@ -2,10 +2,14 @@ import { inject, injectable } from "tsyringe";
 import { UserRepository } from "../repositories/users.repository";
 import { Users } from "../models/users.model";
 import { IUser } from "../interfaces/users.interface";
+import { CartRepository } from "../repositories/carts.repository";
 
 @injectable()
 export class UserServices{
-    constructor(@inject(UserRepository) private userRepository:UserRepository){
+    constructor(
+        @inject(UserRepository) private userRepository:UserRepository,
+        @inject(CartRepository) private cartRepository:CartRepository
+    ){
     }
 
     async getAllUsers():Promise<Users[]>{
@@ -17,7 +21,12 @@ export class UserServices{
     }
 
     async createUser(orderData:IUser):Promise<Users|null>{
-        return await this.userRepository.create(orderData)
+        const userData = await this.userRepository.create(orderData)
+        if(!userData){
+            return null
+        }
+        const cartData = await this.cartRepository.create({userData.data.id})
+        return userData
     }
 
     async updateUser(id:string, orderData:IUser):Promise<void>{

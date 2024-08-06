@@ -11,6 +11,7 @@ import {
 } from "sequelize-typescript";
 import { Product } from "./products.model";
 import { Orders } from "./orders.model";
+import { Carts } from "./carts.model";
 @Table({
     tableName: "productCarts",
     timestamps: true
@@ -24,7 +25,7 @@ export class ProductCart extends Model {
     })
     id!: number;
 
-    // @ForeignKey(() => Cart)
+    @ForeignKey(() => Carts)
     @Column({
         type: DataType.INTEGER,
         allowNull: true
