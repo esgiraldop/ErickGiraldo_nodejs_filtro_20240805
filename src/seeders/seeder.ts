@@ -21,7 +21,7 @@ const entities2Insert = [
     }
 ]
 
-export async function runSeeders() {
+async function runSeeders() {
   // Seeding Entities Entity
   entities2Insert.forEach(async (entity2insert) => {
     try{
@@ -31,3 +31,5 @@ export async function runSeeders() {
     }
   })
 };
+
+export default runSeeders;

@@ -2,7 +2,7 @@ import express from "express";
 import sequelizeConfig from "./config/db";
 import dotenv from "dotenv";
 import Routes from "./routes/router";
-import { runSeeders } from "./seeders/seeder";
+import runSeeders from "./seeders/seeder";
 
 dotenv.config();
 
