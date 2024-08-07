@@ -3,6 +3,7 @@ import sequelizeConfig from "./config/db";
 import dotenv from "dotenv";
 import Routes from "./routes/router";
 import runSeeders from "./seeders/seeder";
+import { authMiddleware } from "./middlewares/auth.middleware";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
+app.use(authMiddleware);
 app.use('/api', Routes);
 
 const startServer = async () =>{
