@@ -3,6 +3,7 @@ import sequelizeConfig from '../config/db';
 import { InsertEntities } from './entitites.seeder';
 import { InsertRoles } from './roles.seeder';
 import { InsertPermissions } from './permissions.seeder';
+import { InsertUsers } from './users.seeder';
 
 export const queryInterface: QueryInterface = sequelizeConfig.getQueryInterface();
 
@@ -18,11 +19,14 @@ const entities2Insert = [
     {
         'name': 'InsertPermissions',
         'content': InsertPermissions
+    },
+    {
+        'name': 'InsertUsers',
+        'content': InsertUsers
     }
 ]
 
 async function runSeeders() {
-  // Seeding Entities Entity
   entities2Insert.forEach(async (entity2insert) => {
     try{
         await entity2insert.content()
