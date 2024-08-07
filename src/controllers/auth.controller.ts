@@ -29,4 +29,31 @@ export class AuthController {
             });
         }
     };
+
+    static async register(req: Request, res: Response): Promise<void> {
+        try{
+            const authService = container.resolve(AuthServices);
+            const user = await authService.createUser(req.body);
+            if (!user) {
+                res.status(200).json({
+                    status: 200,
+                    message: "Registration failed"
+                })
+            }else{
+                res.status(200).json({
+                    status: 200,
+                    message: "Registration was done successfully",
+                    data: user
+                }
+                )
+            }
+        }catch(error){
+            if(error instanceof Error){
+                res.status(500).json({
+                status: 500,
+                message: error.message
+            })
+            }
+        }
+    };
 };
