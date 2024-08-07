@@ -1,0 +1,14 @@
+const path = require('path');
+// const { resolve } = require('path');
+
+// require('ts-node').register({
+//     project: resolve(__dirname, 'tsconfig.json')
+//   });
+
+module.exports = {
+  'config': path.resolve('src/config/db.ts'),
+  'models-path': path.resolve('src/models'),
+  'seeders-path': path.resolve('src/seeders'),
+  'migrations-path': path.resolve('src/migrations'),
+  'require': path.resolve('register.ts')
+};
