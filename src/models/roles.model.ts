@@ -5,11 +5,11 @@ import {
     PrimaryKey,
     Table,
     Model,
-    ForeignKey,
-    BelongsTo,
-    HasMany
+    HasMany,
+    HasOne
 } from "sequelize-typescript";
 import { Users } from "./users.model";
+import { Permissions } from "./permissions.model";
 
 @Table({
     tableName: "roles",
@@ -30,4 +30,7 @@ export class Roles extends Model {
 
     @HasMany(() => Users)
     users!: Users;
+
+    @HasOne(() => Permissions)
+    permissions!: Permissions;
 }
