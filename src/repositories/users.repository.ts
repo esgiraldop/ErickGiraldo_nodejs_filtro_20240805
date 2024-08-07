@@ -16,6 +16,10 @@ export class UserRepository{
         return await Users.findByPk(id)
     }
 
+    async getUserByEmail(email: string): Promise<Users | null> {
+        return Users.findOne({ where: { email } });
+    }
+
     async create({email, password, roleId}:IUser):Promise<Users|null>{
         return await Users.create({email, password, roleId})
     }
