@@ -4,12 +4,17 @@ import { Users } from "../models/users.model";
 import { Orders } from "../models/orders.model";
 import { ProductCart } from "../models/productCarts.model";
 import { Product } from "../models/products.model";
+import { handleLayersError } from "../utiilities/handleLayerErrors.utility";
 
 @injectable()
 export class UserRepository{
 
-    async getAll():Promise<Users[]>{
-        return await Users.findAll()
+    async getAll():Promise<Users[]|void>{
+        try{
+            return await Users.findAll()
+        }catch(error){
+            handleLayersError('UserRepository.getAll', error)
+        }
     }
 
     async getById(id:string):Promise<Users|null>{

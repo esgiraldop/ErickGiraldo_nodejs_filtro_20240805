@@ -3,6 +3,7 @@ import { UserRepository } from "../repositories/users.repository";
 import { Users } from "../models/users.model";
 import { IUser } from "../interfaces/users.interface";
 import { CartRepository } from "../repositories/carts.repository";
+import { handleLayersError } from "../utiilities/handleLayerErrors.utility";
 const bcrypt = require('bcrypt');
 
 @injectable()
@@ -13,8 +14,13 @@ export class UserServices{
     ){
     }
 
-    async getAllUsers():Promise<Users[]>{
-        return await this.userRepository.getAll()
+    async getAllUsers():Promise<Users[] | void>{
+        try{
+            return await this.userRepository.getAll()
+        }
+        catch(error){
+            handleLayersError('UserServices.getAllUsers', error)
+        }
     }
 
     async getUserById(id:string):Promise<Users|null>{
